@@ -17,13 +17,13 @@ $(document).ready(function() {
     var inputFirstName = $("input#new-first-name").val();
     var inputLastName = $("input#new-last-name").val();
 
-    var newContact = new Contact(inputFirstName, inputLastName);
+    var newContact = new Contact(inputFirstName.toUpperCase(), inputLastName.toUpperCase());
 
 $("ul#contactList").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
 
  $(".contact").last().click(function() {
    $("#show-contact").show();
-   $("#show-contact h2").text(newContact.firstName);
+   $("#show-contact h2").text(newContact.fullName());
    $(".first-name").text(newContact.firstName);
     $(".last-name").text(newContact.lastName);
  });
