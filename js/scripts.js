@@ -13,6 +13,16 @@ function Address(street,city, state) {
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
+Address.prototype.fullAddress = function() {
+return this.street + " " + this.city + ", " + this.state;
+}
+function resetFields() {
+  $("input#new-first-name").val("");
+    $("input#new-last-name").val("");
+    $("input.street").val("");
+   $("input.city").val("");
+   $("input.state").val("");
+}
 
 //user Interface logic
 $(document).ready(function() {
@@ -40,7 +50,6 @@ $(document).ready(function() {
 
     var inputFirstName = $("input#new-first-name").val();
     var inputLastName = $("input#new-last-name").val();
-
     var newContact = new Contact(inputFirstName.toUpperCase(), inputLastName.toUpperCase());
 
     $(".new-address").each(function() {
@@ -61,14 +70,10 @@ $("ul#contactList").append("<li><span class='contact'>" + newContact.fullName() 
     $(".last-name").text(newContact.lastName);
     $("ul#addresses").text("");
     newContact.addresses.forEach(function(address) {
-      $("ul#addresses").append("<li>" +address.street + ", " + address.city + " " + address.state +  "</li>");
+      $("ul#addresses").append("<li>" + address.fullAddress() +  "</li>");
     });
  });
- $("input#new-first-name").val("");
-   $("input#new-last-name").val("");
-   $("input.street").val("");
-  $("input.city").val("");
-  $("input.state").val("");
+   resetFields();
   });
 
 });
